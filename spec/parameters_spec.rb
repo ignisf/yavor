@@ -38,6 +38,14 @@ module Yavor
         end
       end
 
+      describe 'comparisson' do
+        it 'can be compared to other parameter lists' do
+          new_params('1', '2', '3').should eq new_params('1', '2', '3')
+          new_params.shoud_eq new_params
+          new_params.should_not eq new_params('1', '2', '3')
+        end
+      end
+
       describe 'string representation' do
         it 'is an empty string when there are no parameters' do
           new_params.to_s.should eq ''
