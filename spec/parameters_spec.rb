@@ -1,5 +1,5 @@
 require 'rspec'
-require './yavor/params.rb'
+require './yavor/parameters.rb'
 
 module Yavor
   module IRC
