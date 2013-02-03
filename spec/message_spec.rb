@@ -29,7 +29,7 @@ module Yavor
 
       context 'when initialized with a prefix' do
         subject { Message.new prefix, command, *params }
-        its(:to_s) { should eq ":#{prefix} #{command} #{params[0]} #{params[1]} :#{params[2]}" }
+        its(:to_s) { should eq string }
       end
 
       context 'when initialized without a prefix' do
@@ -48,6 +48,9 @@ module Yavor
           message = Message.from_str ':ludost.net 005 fuck_off CHANTYPES=&# EXCEPTS INVEX CHANMODES=eIb,k,l,imnpstS CHANLIMIT=&#:15 PREFIX=(ov)@+ MAXLIST=beI:25 MODES=4 NETWORK=whatever KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server'
           message.params.count.should eq 14
           message.params[7].should eq 'MAXLIST=beI:25'
+
+          message = Message.from_str ':GLOBAL!global@services.int NOTICE fuck_off :Welcome to the ludost.net irc network. Enjoy your stay and behave :)'
+          message.params[1].should eq 'Welcome to the ludost.net irc network. Enjoy your stay and behave :)'
         end
       end
     end

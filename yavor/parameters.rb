@@ -26,7 +26,6 @@ module Yavor
         end
       end
 
-
       def_delegator :@params, :[]
       def_delegator :@params, :each
     end
