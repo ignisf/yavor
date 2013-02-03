@@ -6,14 +6,14 @@ module Yavor
     describe Message do
       let(:prefix) { 'some_prefix' }
       let(:command) { 'some_command' }
-      let(:params) { ['param1', 'param2', ':multiword param'] }
+      let(:params) { ['param1', 'param2', 'multiword param'] }
       let(:string) { ':some_prefix some_command param1 param2 :multiword param' }
       let(:message) { Message.new prefix, command, *params }
 
       it 'has the needed readers' do
         message.prefix.should eq prefix
         message.command.should eq command
-        message.params.should eq Parameters.new(params)
+        message.params.should eq Parameters.new(*params)
       end
 
       it 'is immutable' do
@@ -29,12 +29,26 @@ module Yavor
 
       context 'when initialized with a prefix' do
         subject { Message.new prefix, command, *params }
-        its(:to_s) { should eq ":#{prefix} #{command} #{params.join ' '}" }
+        its(:to_s) { should eq ":#{prefix} #{command} #{params[0]} #{params[1]} :#{params[2]}" }
       end
 
       context 'when initialized without a prefix' do
         subject { Message.new nil, command, *params }
-        its(:to_s) { should eq "#{command} #{params.join ' '}" }
+        its(:to_s) { should eq "#{command} #{params[0]} #{params[1]} :#{params[2]}" }
+      end
+
+      describe '#from_str' do
+        it 'parses long messages' do
+          message = Message.from_str ':ludost.net 001 fuck_off :Welcome to the whatever Internet Relay Chat Network fuck_off'
+          message.prefix.should eq 'ludost.net'
+          message.command.should eq '001'
+          message.params[0].should eq 'fuck_off'
+          message.params[1].should eq 'Welcome to the whatever Internet Relay Chat Network fuck_off'
+
+          message = Message.from_str ':ludost.net 005 fuck_off CHANTYPES=&# EXCEPTS INVEX CHANMODES=eIb,k,l,imnpstS CHANLIMIT=&#:15 PREFIX=(ov)@+ MAXLIST=beI:25 MODES=4 NETWORK=whatever KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server'
+          message.params.count.should eq 14
+          message.params[7].should eq 'MAXLIST=beI:25'
+        end
       end
     end
   end

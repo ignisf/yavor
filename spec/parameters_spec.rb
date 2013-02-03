@@ -8,12 +8,6 @@ module Yavor
         expect { Parameters.new 'para1', 'para2', 'para 3' }.to_not raise_error
       end
 
-      describe '#params' do
-        it 'returns the parameters as an array' do
-          new_params('para1', 'para2').params.should eq %w(para1 para2)
-        end
-      end
-
       describe 'enumeration' do
         it 'responds to each, map, count, etc.' do
           parameters = new_params 'para1'

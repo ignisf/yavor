@@ -7,8 +7,6 @@ module Yavor
       include Enumerable
       extend Forwardable
 
-      attr_reader :params
-
       def initialize(*params)
         raise ArgumentError if params[0...-1].any? { |param| param.include? ' ' }
         @params = params
@@ -20,8 +18,14 @@ module Yavor
       end
 
       def ==(other)
-        params == other.params
+        if other.kind_of? Parameters and other.count == count
+          @params.each_index { |index| return false if @params[index] != other[index] }
+          true
+        else
+          false
+        end
       end
+
 
       def_delegator :@params, :[]
       def_delegator :@params, :each
