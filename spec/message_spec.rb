@@ -10,14 +10,16 @@ module Yavor
       let(:string) { ':some_prefix some_command param1 param2 :multiword param' }
       let(:message) { Message.new prefix, command, *params }
 
-      it 'has the needed accessors' do
-        expect { message.prefix = 'alabala' }.to_not raise_error
-        expect { message.command = 'command' }.to_not raise_error
-        expect { message.params = ['1', '2', '3'] }.to_not raise_error
+      it 'has the needed readers' do
+        message.prefix.should eq prefix
+        message.command.should eq command
+        message.params.should eq Parameters.new(params)
+      end
 
-        message.prefix.should eq 'alabala'
-        message.command.should eq 'command'
-        message.params.should eq ['1', '2', '3']
+      it 'is immutable' do
+        expect { message.prefix = 'alabala' }.to raise_error
+        expect { message.command = 'command' }.to raise_error
+        expect { message.params = ['1', '2', '3'] }.to raise_error
       end
 
       it 'validates the prefix and the command' do
