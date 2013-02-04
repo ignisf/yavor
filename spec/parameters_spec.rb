@@ -46,9 +46,10 @@ module Yavor
         end
       end
 
-      describe 'string reing when there are no parameters' do
-          new_params.to_s.sh
-def_delegator :@params, :[]
+      describe 'string representation' do
+        it 'is an empty string when there are no parameters' do
+          new_params.to_s.should eq ''
+        end
 
         it 'has no colon when there are only single-world parameters' do
           new_params('para1', 'para2').to_s.should eq 'para1 para2'
