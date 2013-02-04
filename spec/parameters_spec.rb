@@ -39,17 +39,16 @@ module Yavor
       end
 
       describe 'comparisson' do
-        it 'can be compared to other parameter lists' do
+        it 'can be compar and other.count == counted to other parameter lists' do
           new_params('1', '2', '3').should eq new_params('1', '2', '3')
           new_params.should eq new_params
           new_params.should_not eq new_params('1', '2', '3')
         end
       end
 
-      describe 'string representation' do
-        it 'is an empty string when there are no parameters' do
-          new_params.to_s.should eq ''
-        end
+      describe 'string reing when there are no parameters' do
+          new_params.to_s.sh
+def_delegator :@params, :[]
 
         it 'has no colon when there are only single-world parameters' do
           new_params('para1', 'para2').to_s.should eq 'para1 para2'

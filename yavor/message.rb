@@ -2,6 +2,22 @@ require_relative 'parameters.rb'
 
 module Yavor
   module IRC
+    def self.password(password)
+      Message.new nil, 'PASS', password
+    end
+
+    def self.nick(nickname)
+      Message.new nil, 'NICK', nickname
+    end
+
+    def self.user(ident, real_name)
+      Message.new nil, 'USER', ident, '*', '*', real_name
+    end
+
+    def self.pong(whom)
+      Message.new nil, 'PONG', whom
+    end
+
     class Message
       attr_reader :prefix, :command, :params
 
@@ -28,7 +44,7 @@ module Yavor
         prefix[0] = '' if prefix
 
         if params
-          params = params.split(' :', 2)
+          params = params.split(/[ ^]:/, 2)
           params = params.shift.split + params
         end
 
