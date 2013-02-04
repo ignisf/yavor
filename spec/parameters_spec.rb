@@ -39,7 +39,7 @@ module Yavor
       end
 
       describe 'comparisson' do
-        it 'can be compar and other.count == counted to other parameter lists' do
+        it 'can be compared to other parameter lists' do
           new_params('1', '2', '3').should eq new_params('1', '2', '3')
           new_params.should eq new_params
           new_params.should_not eq new_params('1', '2', '3')
@@ -57,6 +57,7 @@ module Yavor
 
         it 'has a colon before the multiword parameter' do
           new_params('para1', 'para2', 'para 3').to_s.should eq 'para1 para2 :para 3'
+          new_params('para 1').to_s.should eq ':para 1'
         end
       end
     end

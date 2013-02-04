@@ -38,6 +38,11 @@ module Yavor
       end
 
       describe '#from_str' do
+        it 'parses a multi-word-parameter-only message' do
+          message = Message.from_str ':asd 001 :test asdf'
+          #message.params.count.should eq 1
+          message.params.first.should eq 'test asdf'
+        end
         it 'parses long messages' do
           message = Message.from_str ':ludost.net 001 fuck_off :Welcome to the whatever Internet Relay Chat Network fuck_off'
           message.prefix.should eq 'ludost.net'

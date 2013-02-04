@@ -44,7 +44,7 @@ module Yavor
         prefix[0] = '' if prefix
 
         if params
-          params = params.split(/[ ^]:/, 2)
+          params = params.split(/ :|^:/, 2)
           params = params.shift.split + params
         end
 
