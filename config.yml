@@ -1,0 +1,16 @@
+---
+extensions:
+- irc
+irc:
+  nickname:
+  - Yavor
+  - Yavor_
+  - Yavor__
+  ident: yavor
+  real_name: Бот-летописец
+  servers:
+  - name: irc.ludost.net
+  - name: irc.ludost.net
+    port: 6697
+    ssl: true
+
