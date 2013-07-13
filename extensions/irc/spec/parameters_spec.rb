@@ -69,7 +69,3 @@ module Yavor
     end
   end
 end
-
-def new_params(*params)
-  Yavor::IRC::Parameters.new(*params)
-end
