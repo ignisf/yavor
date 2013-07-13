@@ -1,5 +1,4 @@
-require 'rspec'
-require_relative '../prefix.rb'
+require 'extensions/irc/prefix'
 
 module Yavor
   module IRC

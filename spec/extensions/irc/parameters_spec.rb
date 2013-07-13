@@ -1,5 +1,4 @@
-require 'rspec'
-require_relative '../parameters.rb'
+require 'extensions/irc/parameters'
 
 module Yavor
   module IRC
