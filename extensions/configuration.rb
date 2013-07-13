@@ -1,14 +1,14 @@
 require 'lib/startup_config'
+require 'ostruct'
 require 'singleton'
 require 'yaml'
 
 module Yavor
-  class Configuration < Hash
+  class Configuration < OpenStruct
     include Singleton
 
     def initialize
-      super
-      merge! YAML::load_file StartupConfig.instance.config_file
+      super YAML::load_file StartupConfig.instance.config_file
     end
   end
 end

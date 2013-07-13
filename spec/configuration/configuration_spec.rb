@@ -14,7 +14,7 @@ module Yavor
       subject.should eq Configuration.instance
     end
 
-    it { should be_a Hash }
+    it { should be_an OpenStruct }
 
     describe "initialization" do
       it "should load a config file" do
