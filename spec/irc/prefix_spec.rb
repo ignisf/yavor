@@ -1,4 +1,4 @@
-require 'extensions/irc/prefix'
+require 'yavor/extensions/irc/prefix'
 
 module Yavor
   module IRC

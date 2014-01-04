@@ -1,4 +1,4 @@
-require 'extensions/configuration'
+require 'yavor/extensions/configuration'
 
 module Yavor
   describe Configuration do

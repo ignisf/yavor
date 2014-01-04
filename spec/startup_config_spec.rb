@@ -1,4 +1,4 @@
-require 'lib/startup_config'
+require 'yavor/startup_config'
 
 module Yavor
   describe StartupConfig do

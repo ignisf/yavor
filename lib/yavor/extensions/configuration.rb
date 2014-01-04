@@ -1,4 +1,4 @@
-require 'lib/startup_config'
+require 'yavor/startup_config'
 require 'ostruct'
 require 'singleton'
 require 'yaml'

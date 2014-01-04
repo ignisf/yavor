@@ -1,4 +1,4 @@
-require 'extensions/irc/parameters'
+require 'yavor/extensions/irc/parameters'
 
 module Yavor
   module IRC
