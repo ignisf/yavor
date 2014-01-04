@@ -1,15 +1,12 @@
-require 'ostruct'
 require 'singleton'
+require 'slop'
 
 module Yavor
-  class StartupConfig < OpenStruct
-    include Singleton
-
-    DEFAULTS = {config_file: 'config.yml', daemonize: true}
-
-    def initialize
-      super DEFAULTS
-      freeze
+  class StartupConfig
+    def self.options
+      Slop.parse do
+        on 'config=', 'Configuration file', default: 'config.yml'
+      end
     end
   end
 end
