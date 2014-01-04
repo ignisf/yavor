@@ -4,9 +4,11 @@ GEM
     coderay (1.1.0)
     daemons (1.1.9)
     diff-lcs (1.2.5)
+    docile (1.1.1)
     event_bus (1.0.0)
     ffi2-generators (0.1.1)
     method_source (0.8.2)
+    multi_json (1.8.2)
     pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -227,6 +229,11 @@ GEM
     rubysl-xmlrpc (2.0.0)
     rubysl-yaml (2.0.4)
     rubysl-zlib (2.0.1)
+    simplecov (0.8.2)
+      docile (~> 1.1.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     slop (3.4.7)
     yard (0.8.7.3)
 
@@ -243,4 +250,5 @@ DEPENDENCIES
   rake
   rspec
   rubysl (~> 2.0)
+  simplecov
   slop

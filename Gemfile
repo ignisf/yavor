@@ -4,11 +4,18 @@ gem 'daemons'
 gem 'event_bus'
 gem 'slop'
 
-group :development, :test do
+group :development do
   gem 'pry'
   gem 'pry-doc'
+end
+
+group :development do
   gem 'rake'
+end
+
+group :test do
   gem 'rspec'
+  gem 'simplecov', require: false
 end
 
 platforms :rbx do
