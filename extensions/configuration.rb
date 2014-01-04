@@ -8,7 +8,7 @@ module Yavor
     include Singleton
 
     def initialize
-      super YAML::load_file StartupConfig.instance.config_file
+      super YAML::load_file StartupConfig.options[:config]
     end
   end
 end

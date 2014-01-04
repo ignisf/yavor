@@ -6,7 +6,7 @@ module Yavor
     let(:test_config) { {"test_key" => "test_value"} }
 
     before(:each) do
-      YAML.stub(:load_file).and_return(test_config)  
+      YAML.stub(:load_file).and_return(test_config)
     end
 
     it 'should be a singleton' do
