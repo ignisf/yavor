@@ -40,6 +40,7 @@ module Yavor
       describe 'comparisson' do
         it { should eq Parameters.new(*params) }
         it { should_not eq Parameters.new('1', '2', '3') }
+        it { should_not eq [1, 2, 3] }
 
         context 'when no parameters' do
           let(:params) { [] }
