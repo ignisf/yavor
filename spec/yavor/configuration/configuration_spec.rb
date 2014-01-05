@@ -1,13 +1,14 @@
 require 'yavor/extensions/configuration'
 
 module Yavor
-  describe Configuration do
-    subject { Configuration.clone.instance }
-    let(:test_config) { {"test_key" => "test_value"} }
-
+  describe Configuration, fakefs: true do
     before(:each) do
-      YAML.stub(:load_file).and_return(test_config)
+      File.open('config.yml', 'w') do |f|
+        f.puts({"test_key" => "test_value"}.to_yaml)
+      end
     end
+
+    subject { Configuration.clone.instance }
 
     it 'should be a singleton' do
       subject.class.should respond_to :instance
@@ -18,7 +19,7 @@ module Yavor
 
     describe "initialization" do
       it "should load a config file" do
-        test_config.each { |key, value| subject[key].should eq value }
+        subject.test_key.should eq "test_value"
       end
     end
   end
