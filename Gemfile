@@ -7,9 +7,10 @@ gem 'slop'
 group :development do
   gem 'pry'
   gem 'pry-doc'
+  gem 'spectator-emacs', github: 'ignisf/spectator-emacs', branch: 'bump-spectator'
 end
 
-group :development do
+group :test do
   gem 'rake'
 end
 
