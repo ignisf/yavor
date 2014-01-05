@@ -1,6 +1,18 @@
 language: ruby
 rvm:
+  - ruby-head
   - 2.1.0
   - 2.0.0
+  - 1.9.3
   - rbx
-cache: bundler
+  - jruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
+    - rvm: rbx
+    - rvm: 1.9.3
+bundler_args: --without development --deployment
+cache:
+  - bundler
+  - apt
