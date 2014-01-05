@@ -4,23 +4,23 @@ module Yavor
   module IRC
     describe Prefix do
       describe '::nick' do
-        it 'should return a prefix initialized with a nick' do
-          Prefix.nick('test').nick.should eq 'test'
+        it 'initializes a nick prefix' do
+          expect(Prefix.nick('test').nick).to eq 'test'
         end
       end
 
       describe '::user' do
-        it 'should return a prefix initialized with nick, ident and a host' do
+        it 'initializes a prefix with nick, ident and a host' do
           prefix = Prefix.user 'testnick', 'testuser', nil
-          prefix.nick.should eq 'testnick'
-          prefix.user.should eq 'testuser'
-          prefix.host.should eq nil
+          expect(prefix.nick).to eq 'testnick'
+          expect(prefix.user).to eq 'testuser'
+          expect(prefix.host).to eq nil
         end
       end
 
       describe '::server' do
-        it 'should create a server prefix' do
-          Prefix.server('useless.com').server_name.should eq 'useless.com'
+        it 'initializes a server prefix' do
+          expect(Prefix.server('useless.com').server_name).to eq 'useless.com'
         end
       end
     end
@@ -37,12 +37,12 @@ module Yavor
         end
 
         it 'has a name' do
-          server.server_name.should eq 'irc.ludost.net'
+          expect(server.server_name).to eq 'irc.ludost.net'
         end
 
         describe '#to_s' do
           it 'returns a standards-compliant string representation' do
-            server.to_s.should eq ":#{server.server_name}"
+            expect(server.to_s).to eq ":#{server.server_name}"
           end
         end
       end
@@ -65,21 +65,21 @@ module Yavor
         end
 
         it 'has a nick' do
-          subject.nick.should eq nick
+          expect(subject.nick).to eq nick
         end
 
         it 'has a user' do
-          subject.user.should eq user
+          expect(subject.user).to eq user
         end
 
         it 'has a host' do
-          subject.host.should eq host
+          expect(subject.host).to eq host
         end
 
         describe '#to_s' do
           context 'when initialized with a nick, user and a host' do
             it "contains all of them" do
-              subject.to_s.should eq ":#{nick}!#{user}@#{host}"
+              expect(subject.to_s).to eq ":#{nick}!#{user}@#{host}"
             end
           end
 
@@ -87,7 +87,7 @@ module Yavor
             let(:user) { nil }
 
             it 'contains only a nick and a host' do
-              subject.to_s.should eq ":#{nick}@#{host}"
+              expect(subject.to_s).to eq ":#{nick}@#{host}"
             end
           end
 
@@ -95,7 +95,7 @@ module Yavor
             let(:host) { nil }
 
             it 'contains only a nick and a user' do
-              subject.to_s.should eq ":#{nick}!#{user}"
+              expect(subject.to_s).to eq ":#{nick}!#{user}"
             end
           end
         end

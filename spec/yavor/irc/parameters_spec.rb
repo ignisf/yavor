@@ -11,7 +11,7 @@ module Yavor
       end
 
       it 'provides access to parameters by index' do
-        subject[1].should eq 'para2'
+        expect(subject[1]).to eq 'para2'
       end
 
       it 'is immutable' do
@@ -53,7 +53,7 @@ module Yavor
           let(:params) { [] }
 
           it 'is an empty string' do
-            subject.to_s.should eq ''
+            expect(subject.to_s).to eq ''
           end
         end
 
@@ -61,7 +61,7 @@ module Yavor
           let(:params) { %w(a b c d e f g h i sadf) }
 
           it 'consists of the parameters separated by spaces' do
-            subject.to_s.should eq params.join(' ')
+            expect(subject.to_s).to eq params.join(' ')
           end
         end
 
@@ -69,7 +69,7 @@ module Yavor
           let(:params) { ['a', 'b', 'asdf asdf'] }
 
           it 'ends with the multi-word parameter separated with a colon' do
-            subject.to_s.should eq 'a b :asdf asdf'
+            expect(subject.to_s).to eq 'a b :asdf asdf'
           end
         end
       end
