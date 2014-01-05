@@ -16,7 +16,7 @@ end
 
 group :test do
   gem 'fakefs', :require => "fakefs/safe"
-  gem 'rspec'
+  gem "rspec", "~> 3.0.0.beta1"
   gem 'simplecov', require: false
 end
 

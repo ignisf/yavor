@@ -11,15 +11,15 @@ module Yavor
     subject { Configuration.clone.instance }
 
     it 'should be a singleton' do
-      subject.class.should respond_to :instance
-      subject.should eq Configuration.instance
+      expect(subject.class).to respond_to :instance
+      expect(subject).to eq Configuration.instance
     end
 
     it { should be_an OpenStruct }
 
     describe "initialization" do
       it "should load a config file" do
-        subject.test_key.should eq "test_value"
+        expect(subject.test_key).to eq "test_value"
       end
     end
   end

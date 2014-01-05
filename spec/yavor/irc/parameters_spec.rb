@@ -51,20 +51,27 @@ module Yavor
       describe 'string representation' do
         context 'when there are no parameters' do
           let(:params) { [] }
-          its(:to_str) { should eq '' }
+
+          it 'is an empty string' do
+            subject.to_s.should eq ''
+          end
         end
 
         context 'with only single-word parameters' do
           let(:params) { %w(a b c d e f g h i sadf) }
-          its(:to_str) { should eq params.join(' ') }
+
+          it 'consists of the parameters separated by spaces' do
+            subject.to_s.should eq params.join(' ')
+          end
         end
 
         context 'with a multi-word parameter' do
           let(:params) { ['a', 'b', 'asdf asdf'] }
-          its(:to_str) { should eq 'a b :asdf asdf' }
-        end
 
-        its(:to_s) { should eq subject.to_str }
+          it 'ends with the multi-word parameter separated with a colon' do
+            subject.to_s.should eq 'a b :asdf asdf'
+          end
+        end
       end
     end
   end

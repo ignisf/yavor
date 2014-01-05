@@ -27,26 +27,24 @@ module Yavor
 
     module Prefix
       describe Server do
-        subject { Server.new server_name }
-        let(:server_name) { 'server_name123.com' }
+        let(:server) { Server.new 'irc.ludost.net' }
 
         describe "initialization" do
-          context 'with a valid server name' do
-            it 'succeedes' do
-              expect { Server.new server_name }.to_not raise_error
-            end
-          end
-
-          context 'with an invalid server name' do
-            it 'fails' do
-              expect { Server.new 'not_so valid.com' }.to raise_error ArgumentError
-            end
+          it 'validates the server name' do
+            expect { Server.new 'irc.ludost.net' }.to_not raise_error
+            expect { Server.new 'not_so valid.com' }.to raise_error ArgumentError
           end
         end
 
-        its(:server_name) { should eq server_name }
-        its(:to_str) { should eq ':' + server_name }
-        its(:to_s) { should eq subject.to_str }
+        it 'has a name' do
+          server.server_name.should eq 'irc.ludost.net'
+        end
+
+        describe '#to_s' do
+          it 'returns a standards-compliant string representation' do
+            server.to_s.should eq ":#{server.server_name}"
+          end
+        end
       end
 
       describe User do
@@ -56,48 +54,48 @@ module Yavor
         let(:host) { 'useless.com' }
 
         describe 'initialization' do
-          context 'with valid data' do
-            it 'succeedes' do
-              expect { User.new nick, user, host }.to_not raise_error
-            end
-          end
-
-          context 'with invalid data' do
-            it 'fails' do
-              expect { User.new 'ni ck', 'user', 'host' }.to raise_error ArgumentError
-              expect { User.new 'nick', 'us er', 'host' }.to raise_error ArgumentError
-              expect { User.new 'nick', 'user', 'ho st' }.to raise_error ArgumentError
-              expect { User.new nil, 'user', 'host' }.to raise_error ArgumentError
-              expect { User.new }.to raise_error ArgumentError
-            end
+          it 'validates the user data' do
+            expect { User.new nick, user, host }.to_not raise_error
+            expect { User.new 'ni ck', 'user', 'host' }.to raise_error ArgumentError
+            expect { User.new 'nick', 'us er', 'host' }.to raise_error ArgumentError
+            expect { User.new 'nick', 'user', 'ho st' }.to raise_error ArgumentError
+            expect { User.new nil, 'user', 'host' }.to raise_error ArgumentError
+            expect { User.new }.to raise_error ArgumentError
           end
         end
 
-        its(:nick) { should eq nick }
-        its(:user) { should eq user }
-        its(:host) { should eq host }
-        its(:to_s) { should eq subject.to_str }
+        it 'has a nick' do
+          subject.nick.should eq nick
+        end
 
-        describe '#to_str' do
+        it 'has a user' do
+          subject.user.should eq user
+        end
+
+        it 'has a host' do
+          subject.host.should eq host
+        end
+
+        describe '#to_s' do
           context 'when initialized with a nick, user and a host' do
-            it "should construct a string representation with all of them" do
-              subject.to_str.should eq ":#{nick}!#{user}@#{host}"
+            it "contains all of them" do
+              subject.to_s.should eq ":#{nick}!#{user}@#{host}"
             end
           end
 
-          context 'when initializes with a nick and a host' do
+          context 'when initialized with a nick and a host' do
             let(:user) { nil }
 
-            it 'should construct a string representation with nick and a host' do
-              subject.to_str.should eq ":#{nick}@#{host}"
+            it 'contains only a nick and a host' do
+              subject.to_s.should eq ":#{nick}@#{host}"
             end
           end
 
-          context 'when initializes with a nick and a user' do
+          context 'when initialized with a nick and a user' do
             let(:host) { nil }
 
-            it 'should construct a string representation with nick and a user' do
-              subject.to_str.should eq ":#{nick}!#{user}"
+            it 'contains only a nick and a user' do
+              subject.to_s.should eq ":#{nick}!#{user}"
             end
           end
         end
