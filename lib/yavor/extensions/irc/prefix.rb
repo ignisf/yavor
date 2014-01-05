@@ -21,11 +21,9 @@ module Yavor
           @server_name = server_name
         end
 
-        def to_str
+        def to_s
           ':' + @server_name
         end
-
-        alias :to_s :to_str
       end
 
       class User
@@ -42,14 +40,12 @@ module Yavor
           @nick, @user, @host = nick, user, host
         end
 
-        def to_str
+        def to_s
           result  = ':' + @nick
           result += '!' + @user if @user
           result += '@' + @host if @host
           result
         end
-
-        alias :to_s :to_str
       end
     end
   end

@@ -12,15 +12,13 @@ module Yavor
         @params = params
       end
 
-      def to_str
+      def to_s
         if @params.last and @params.last.include? ' '
           (@params[0...-1] << ':' + @params.last).join ' '
         else
           @params.join ' '
         end
       end
-
-      alias :to_s :to_str
 
       def ==(other)
         if other.kind_of? Parameters and other.count == count
